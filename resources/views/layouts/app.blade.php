@@ -30,7 +30,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        
+                       <!-- @hasrole('admin') -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.users.index') }}">User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/buku">Buku</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/peminjaman">Peminjaman</a>
+                            </li>
+                       <!-- @endhasrole -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
