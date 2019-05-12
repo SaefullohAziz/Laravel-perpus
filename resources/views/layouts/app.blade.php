@@ -30,24 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @hasrole('admin')
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.users.index') }}">Manage User</a>
-                        </li>
-                        <li class="nav-item mr-auto">
-                            <a class="nav-link" href="/peminjaman">Peminjaman</a>
-                        </li>
-                        <li class="nav-item mr-auto">
-                            <a class="nav-link" href="/buku">Buku</a>
-                        </li>
-                        @endhasrole
-
-                        @impersionate()
-                        <li class="navbar-nav mr-auto">
-                            <a href="{{ route('admin.impersionate.destroy') }}">Stop Impersionate</a>
-                        </li>
-                        @endimpersionate
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
