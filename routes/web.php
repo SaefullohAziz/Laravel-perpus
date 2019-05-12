@@ -15,12 +15,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 });
 Route::get('/admin/impersionate/destroy', 'Admin\ImpersionateController@destroy')->name('admin.impersionate.destroy'); 
 
-Route::get('/buku', 'BukuController@index'); 
-Route::post('/buku/create', 'BukuController@create'); 
-Route::get('/buku/edit/{id}', 'BukuController@edit');
-Route::post('/buku/update', 'BukuController@update');
-Route::get('/buku/destroy/{id}', 'BukuController@destroy')->name('hapusBuku'); 
+Route::get('/buku', 'BukuController@index')->middleware(['auth', 'auth.admin']); 
+Route::post('/buku/create', 'BukuController@create')->middleware(['auth', 'auth.admin']); 
+Route::get('/buku/edit/{id}', 'BukuController@edit')->middleware(['auth', 'auth.admin']);
+Route::post('/buku/update', 'BukuController@update')->middleware(['auth', 'auth.admin']);
+Route::get('/buku/destroy/{id}', 'BukuController@destroy')->name('hapusBuku')->middleware(['auth', 'auth.admin']); 
 
-Route::get('/peminjaman', 'PeminjamanController@index');
-Route::get('/peminjaman/cek/{id}', 'PeminjamanController@cek'); 
-Route::get('/peminjaman/konfir/{id}', 'PeminjamanController@konfir');
+Route::get('/peminjaman', 'PeminjamanController@index')->middleware(['auth', 'auth.admin']);
+Route::get('/peminjaman/cek/{id}', 'PeminjamanController@cek')->middleware(['auth', 'auth.admin']); 
+Route::get('/peminjaman/konfir/{id}', 'PeminjamanController@konfir')->middleware(['auth', 'auth.admin']);
