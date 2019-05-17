@@ -1,64 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                	<div class="d-flex justify-content-between">
-		                <h5 class="card-title">Table buku</h5>
-		                <!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-						  +
-						</button>
-		            </div>
-	            </div>
-
-                <div class="card-body px-0 shadow">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <div class="table-responsive">
-                    <table class="table">
-					  <thead>
-					    <tr>
-					      <th scope="col">Nama</th>
-					      <th scope="col">Aksi</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					  	@foreach ($Buku as $buku)
-						    <tr>
-						      <td>{{ $buku->nama_buku }}</td>
-						      <td>
-						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm">Edit
-						      	</a>
-					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger">Hapus</a>
-						      </td>
-						    </tr>
-					    @endforeach
-					  </tbody>
-					</table>
-					{{ $Buku->links() }}
-                    </div>
-                </div>
-            </div>
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-10 col-md-10">
+      <div class="card shadow"  style="border-radius: 15px;">
+        <div class="card-header">
+        	<div class="d-flex justify-content-between">
+            <h5 class="card-title text-primary">Table buku</h5>
+            <!-- Button trigger modal -->
+  						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBuku">
+  						  +
+		          </button>
+          </div>
         </div>
+
+        <div class="card-body px-1 pb-1">
+          @if (session('status'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('status') }}
+              </div>
+          @endif
+
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+  					  <thead>
+  					    <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nama</th>
+  					      <th scope="col">Harga</th>
+  					      <th scope="col" class="text-center">Aksi</th>
+  					    </tr>
+  					  </thead>
+  					  <tbody>
+                <?php $no =1 ; ?>
+  					  	@foreach ($Buku as $buku)
+  						    <tr>
+                    <td><?= $no++; ?></td>
+                    <td>{{ $buku->nama_buku }}</td>
+  						      <td>{{ $buku->harga_buku }}</td>
+  						      <td class="text-center">
+  						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm col-3 rounded-pill">Edit
+  						      	</a>
+  					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger col-3 rounded-pill">Hapus</a>
+  						      </td>
+  						    </tr>
+  					    @endforeach
+  					  </tbody>
+  					</table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addBuku" tabindex="-1" role="dialog" aria-labelledby="addBukuLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="addBukuLabel">Add buku</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -67,8 +71,25 @@
         <form action="/buku/create" method="post">
         	@csrf
         	<div class="form-group">
-			    <input type="text" class="form-control" id="buku" name="buku" placeholder="Nama buku">
-			</div>
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="harga_buku">Nama</label>
+              </div>
+              <div class="col-sm-11">
+			           <input type="text" class="form-control" id="buku" name="buku" placeholder="Nama buku">
+              </div>
+            </div>
+			    </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="harga_buku">Harga</label>
+              </div>
+              <div class="col-sm-11">
+                <input type="number" class="form-control" id="harga_buku" name="harga" value="50000">
+              </div>
+            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

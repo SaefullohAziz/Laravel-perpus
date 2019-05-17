@@ -8,6 +8,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@pinjam')->name('pinjam');
+Route::get('/peminjaman/form/{id}', 'HomeController@form');
+Route::get('/peminjaman/riwayat/{id}', 'PeminjamanController@riwayat');
+Route::get('/peminjaman/perpanjangan', 'PeminjamanController@perpanjangan');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 	Route::resource('/users', 'UserController', ['except' => ['show', 'create','store']]); 

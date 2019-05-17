@@ -8,6 +8,6 @@ class Buku extends Model
 {
     protected $table = 'buku';
     protected $fillable = [
-        'nama_buku'
+        'nama_buku', 'harga_buku'
     ];
 }

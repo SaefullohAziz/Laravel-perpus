@@ -1,0 +1,29 @@
+section
+{
+	min-height: 768px;
+}
+
+.jumbotron
+{
+	margin: 0;
+}
+.img-thumbnail
+{
+	transition-property: width, height;
+}
+.img-thumbnail:hover
+{
+	width: 500px;
+	position: absolute;
+	z-index: 1;
+	transform: translateX(-100px);
+	transition: 1s;
+}
+
+@media(max-width: 600px)
+{
+	img
+	{
+		display: none;
+	}
+}

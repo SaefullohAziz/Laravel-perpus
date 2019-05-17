@@ -16,6 +16,10 @@ class CreateBukuTable extends Migration
         Schema::create('buku', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_buku', 50);
+            $table->usignedinteger('harga_buku', 11);
+            $table->string('penulis', 50)->nullable();
+            $table->string('penerbit', 100)->nullable();
+            $table->string('tahun', 4)->nullable();
             $table->timestamps();
         });
     }
