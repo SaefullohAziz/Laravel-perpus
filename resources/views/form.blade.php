@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Konfirmasi')
 @section('content')
     <div class="container pt-5">
       <div class="row justify-content-center">
@@ -11,6 +12,7 @@
             <div class="card-body">
               <form action="{{ route('pinjam') }}" method="post">
                 @csrf
+                <input type="hidden" name="id_buku" value="4">
                 <div class="form-group">
                   <label for="nama">Nama Peminjam</label>
                   <input type="nama" class="form-control rounded-pill" name="nama_peminjam" id="nama" value="{{ $User }}" readonly>
