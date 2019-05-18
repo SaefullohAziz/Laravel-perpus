@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Buku;
@@ -82,5 +83,47 @@ class HomeController extends Controller
         ];
         Peminjaman::create($data);
         return redirect('/home')->with('success', 'Peminjaman Dikonfirmasi, Harap kembalikan buku tepat waktu! Terima kasih :D');
+    }
+
+    public function cari(Request $key)
+    {
+        $cari = $key->key;
+
+        $Buku = DB::table('buku')
+                    ->where('nama_buku', 'like', "%".$cari."%")
+                    ->orwhere('penulis', 'like', "%".$cari."%")
+                    ->orwhere('penerbit', 'like', "%".$cari."%")
+                    ->get();
+
+        $user = User::find(Auth::user()->id);
+
+        $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)
+                        ->where('status', 'Pinjam')
+                        ->count();
+
+        $perpanjang = Peminjaman::where('nama_peminjam', Auth::user()->name)
+                        ->where('status', 'Diperpanjang')
+                        ->count();
+
+        if (($peminjaman > 1) OR ($perpanjang > 1)) {
+            $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)->where('status', 'Pinjam')->orderBy('tanggal_kembali', 'asc')->orwhere('status', 'Diperpanjang')->get()->first();
+            $tanggal_kembali = json_decode(json_encode($peminjaman), True)['tanggal_kembali'];
+            $deadline = explode('-', $tanggal_kembali);
+            $deadline = mktime(0, 0, 0, $deadline[1], $deadline[2], $deadline[0]);
+            $sekarang = time();
+
+            $buku = Buku::where('id', json_decode(json_encode($peminjaman), True)['id'])->get()->first();
+            $buku = json_decode(json_encode($buku), True)['nama_buku'];
+
+            if ($deadline <= ($sekarang+60*60*24*3)) {
+                session()->flash('info', 'Pengembalian buku ' . 
+                    $buku
+                 . ' kurang dari tiga hari! (' . $tanggal_kembali . ')');
+                session()->flash('id_peminjaman', $peminjaman = json_decode(json_encode($peminjaman), True)['id'] );
+            }
+        }
+
+
+        return view('peminjam', ['User' => $user, 'Buku' => $Buku]);
     }
 }

@@ -35,12 +35,12 @@
                 @foreach ($Peminjaman as $peminjam)
                     <tr>
                       <td><?= $no++; ?></td>
-                      <td>{{ $peminjam['nama_peminjam'] }}</td>
+                      <td class="text-capitalize">{{ $peminjam['nama_peminjam'] }}</td>
                       <td>{{ $peminjam['tanggal_pinjam'] }}</td>
-                      <td>{{ $peminjam['nama_buku'] }}</td>
+                      <td class="text-capitalize">{{ $peminjam['nama_buku'] }}</td>
                       <td>{{ $peminjam['tanggal_kembali'] }}</td>
                       <td>{{ $peminjam['biaya'] }}</td>
-                      <td>{{ $peminjam['status'] }}</td>
+                      <td class="text-capitalize">{{ $peminjam['status'] }}</td>
                       <td>
                         <a href="/peminjaman/cek/<?= $peminjam['id']; ?>" class="btn btn-dark btn-sm <?php if ($peminjam['status'] == 'dikembalikan'): ?>
                           disabled

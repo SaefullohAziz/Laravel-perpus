@@ -33,7 +33,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="/peminjaman/riwayat/{{ Auth::user()->id }}" class="nav-link" href="">Riwayat peminjaman</a>
+                            <a class="nav-link" href="/home">Pinjam</a>
                         </li>
                        @hasrole('admin')
                             <li class="nav-item">
@@ -68,7 +68,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle font-weight-bold text-capitalize" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

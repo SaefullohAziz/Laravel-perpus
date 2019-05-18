@@ -8,6 +8,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@pinjam')->name('pinjam');
+Route::get('/home/cari', 'HomeController@cari');
 Route::get('/peminjaman/form/{id}', 'HomeController@form');
 Route::get('/peminjaman/riwayat/{id}', 'PeminjamanController@riwayat');
 Route::get('/peminjaman/perpanjangan', 'PeminjamanController@perpanjangan');
