@@ -45,7 +45,7 @@ class PeminjamanController extends Controller
                     ->update(['biaya' => $harga_buku*2]);
                 return redirect('/peminjaman')->with('success','Pemgembalian telat lebih dari atau sama dengan tiga hari, biaya denda ditambahkan!');
             }
-            elseif ($sekarang > ($tanggal_kembali+60*60*24))
+            else
             {
                 DB::table('peminjaman')
                     ->where('id', $id)
