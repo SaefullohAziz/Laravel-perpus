@@ -33,6 +33,7 @@
               </thead>
               <tbody>
                 <?php $no = 1; ?>
+                
                 @foreach ($Peminjaman as $peminjam)
                     <tr>
                       <td><?= $no++; ?></td>

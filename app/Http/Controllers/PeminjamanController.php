@@ -11,8 +11,8 @@ class PeminjamanController extends Controller
 {
     public function index()
     {
-        $Peminjaman = Peminjaman::
-                         join('buku', 'peminjaman.id_buku', '=' , 'buku.id')
+        $Peminjaman = Peminjaman::select('peminjaman.*', 'buku.nama_buku')
+                        ->join('buku', 'peminjaman.id_buku', '=' , 'buku.id')
                         ->orderBy('status', 'desc')
                         ->get()->all();
         return view('admin.index', ['Peminjaman' => $Peminjaman]);
@@ -24,6 +24,7 @@ class PeminjamanController extends Controller
                             ->select(['tanggal_kembali', 'id_buku'])
                             ->where('id', $id)
                             ->get();
+
 
         $id_buku = json_decode(json_encode($tanggal_kembali), True)[0]['id_buku'];
         $harga_buku = DB::table('buku')
@@ -89,7 +90,8 @@ class PeminjamanController extends Controller
         $Peminjaman = Peminjaman::
                      join('buku', 'peminjaman.id_buku', '=' , 'buku.id')
                     ->orderBy('status', 'desc')
-                    ->where('nama_peminjam', Auth::user()->name)
+                    // ->where('nama_peminjam', Auth::user()->name)
+                    ->where('id_user', Auth::user()->id)
                     ->paginate(10);
         return view('riwayat', ['Peminjaman' => $Peminjaman]);
     }

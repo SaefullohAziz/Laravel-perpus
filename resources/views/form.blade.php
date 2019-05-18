@@ -12,7 +12,6 @@
             <div class="card-body">
               <form action="{{ route('pinjam') }}" method="post">
                 @csrf
-                <input type="hidden" name="id_buku" value="4">
                 <div class="form-group">
                   <label for="nama">Nama Peminjam</label>
                   <input type="nama" class="form-control rounded-pill" name="nama_peminjam" id="nama" value="{{ $User }}" readonly>
@@ -25,11 +24,9 @@
                 </div>
                 <div class="form-group">
                   <label for="buku">Nama Buku</label>
-                  <fieldset disabled>
                     <select class="form-control rounded-pill" name="id_buku" id="buku" name="id_buku">
                       	<option value="{{ $Buku['id'] }}">{{ $Buku['nama_buku'] }}</option>
                     </select>
-                  </fieldset>
                 </div>
                 <div class="form-group">
                   <label for="tanggalkembali">Tanggal Kembali (Format : Bulan/Tanggal/Tahun)</label>

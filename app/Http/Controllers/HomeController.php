@@ -64,7 +64,7 @@ class HomeController extends Controller
 
     public function form($id)
     {
-        $user = User::find(Auth::user()->id)->name;
+        $user = Auth::user()->name;
         $Buku = Buku::where('id', $id)->first();
 
         return view('form', ['User' => $user, 'Buku' => $Buku]);
@@ -73,7 +73,9 @@ class HomeController extends Controller
     public function pinjam(Request $req)
     {
         $user = User::find(Auth::user()->id)->name;
+        $id_user = Auth::user()->id;
         $data = [
+            'id_user' => $id_user,
             'nama_peminjam' => $user,
             'tanggal_pinjam' => date('Y-m-d'),
             'id_buku' => $req['id_buku'],
@@ -97,11 +99,11 @@ class HomeController extends Controller
 
         $user = User::find(Auth::user()->id);
 
-        $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)
+        $peminjaman = Peminjaman::where('id_user', Auth::user()->id)
                         ->where('status', 'Pinjam')
                         ->count();
 
-        $perpanjang = Peminjaman::where('nama_peminjam', Auth::user()->name)
+        $perpanjang = Peminjaman::where('id_user', Auth::user()->id)
                         ->where('status', 'Diperpanjang')
                         ->count();
 
