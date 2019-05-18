@@ -32,20 +32,22 @@ class HomeController extends Controller
         $user = User::find(Auth::user()->id);
         $Buku = Buku::get();
 
-        $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)
+        $peminjaman = Peminjaman::where('id_user', Auth::user()->id)
                         ->where('status', 'Pinjam')
                         ->count();
 
-        $perpanjang = Peminjaman::where('nama_peminjam', Auth::user()->name)
+
+        $perpanjang = Peminjaman::where('id_user', Auth::user()->id)
                         ->where('status', 'Diperpanjang')
                         ->count();
 
-        if (($peminjaman > 1) OR ($perpanjang > 1)) {
+        if (($peminjaman >= 1) OR ($perpanjang >= 1)) {
             $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)->where('status', 'Pinjam')->orderBy('tanggal_kembali', 'asc')->orwhere('status', 'Diperpanjang')->get()->first();
             $tanggal_kembali = json_decode(json_encode($peminjaman), True)['tanggal_kembali'];
             $deadline = explode('-', $tanggal_kembali);
             $deadline = mktime(0, 0, 0, $deadline[1], $deadline[2], $deadline[0]);
             $sekarang = time();
+
 
             $buku = Buku::where('id', json_decode(json_encode($peminjaman), True)['id'])->get()->first();
             $buku = json_decode(json_encode($buku), True)['nama_buku'];
