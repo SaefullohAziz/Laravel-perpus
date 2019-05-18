@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\DB;
+use Illuminate\Facades\DB;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
