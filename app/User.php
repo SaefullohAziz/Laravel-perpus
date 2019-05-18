@@ -3,9 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
-
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -47,11 +44,11 @@ class User extends Authenticatable
 
     public function hasAnyRoles($roles)
     {
-        return null !== $this->roles()->where(DB::Raw('name::VARCHAR'), DB::Raw('='), $role)->first();
+        return null !== $this->roles()->whereIn('name', $roles)->first();
     }
 
     public function hasAnyRole($role)
     {
-        return null !== $this->roles()->where(DB::Raw('name::VARCHAR'), DB::Raw('='), $role)->first();
+        return null !== $this->roles()->where('name', $role)->first();
     }
 }
