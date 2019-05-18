@@ -77,7 +77,7 @@
                 <label for="harga_buku">Nama</label>
               </div>
               <div class="col-sm-11">
-			           <input type="text" class="form-control" id="buku" name="buku" placeholder="Nama buku">
+			           <input type="text" class="form-control" id="buku" name="buku" placeholder="Nama buku" required>
               </div>
             </div>
 			    </div>
@@ -87,7 +87,7 @@
                 <label for="harga_buku">Harga</label>
               </div>
               <div class="col-sm-11">
-                <input type="number" class="form-control" id="harga_buku" name="harga" value="50000">
+                <input type="number" class="form-control" id="harga_buku" name="harga" value="50000" required>
               </div>
             </div>
           </div>

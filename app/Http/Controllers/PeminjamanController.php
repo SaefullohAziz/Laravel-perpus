@@ -74,14 +74,13 @@ class PeminjamanController extends Controller
         $status = Peminjaman::where('id', $id)->where('status', 'Pinjam')->count();
         if ($status == 1) {
             DB::table('peminjaman')
-                        ->where('id', $id)
-                        ->update(['status' => 'Diperpanjang',
-                                 'tanggal_kembali' => date('Y-m-d', time()+60*60*24*5)]);
+                ->where('id', $id)
+                ->update(['status' => 'Diperpanjang',
+                         'tanggal_kembali' => date('Y-m-d', time()+60*60*24*5)]);
             session()->flash('success','Perpanjangan berhasil dikonfirmasi, Lakukan pengembalian setelah lima hari!');
             return redirect('/home');
         }
 
-        session()->flash('danger','Perpanjangan gagal dikonfirmasi, perpanjangan hanya bisa dilakukan satu kali!');
         return redirect('/home')->with('danger','Perpanjangan gagal dikonfirmasi, perpanjangan hanya bisa dilakukan satu kali!');
     }
 
