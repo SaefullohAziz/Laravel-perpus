@@ -29,7 +29,10 @@
   					    <tr>
                   <th scope="col">#</th>
                   <th scope="col">Nama</th>
-  					      <th scope="col">Harga</th>
+                  <th scope="col">Harga</th>
+                  <th scope="col">Penulis</th>
+                  <th scope="col">penerbit</th>
+  					      <th scope="col">Tahun terbit</th>
   					      <th scope="col" class="text-center">Aksi</th>
   					    </tr>
   					  </thead>
@@ -39,7 +42,10 @@
   						    <tr>
                     <td><?= $no++; ?></td>
                     <td>{{ $buku->nama_buku }}</td>
-  						      <td>{{ $buku->harga_buku }}</td>
+                    <td>{{ $buku->harga_buku }}</td>
+                    <td>{{ $buku->penulis }}</td>
+                    <td>{{ $buku->penerbit }}</td>
+  						      <td>{{ $buku->tahun }}</td>
   						      <td class="text-center">
   						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm col-3 rounded-pill">Edit
   						      	</a>
@@ -63,7 +69,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addBukuLabel">Add buku</h5>
+        <h5 class="modal-title" id="addBukuLabel">Tambah buku</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -74,7 +80,7 @@
         	<div class="form-group">
             <div class="row">
               <div class="col-sm-1">
-                <label for="harga_buku">Nama</label>
+                <label for="buku">Nama</label>
               </div>
               <div class="col-sm-11">
 			           <input type="text" class="form-control" id="buku" name="buku" placeholder="Nama buku" required>
@@ -88,6 +94,36 @@
               </div>
               <div class="col-sm-11">
                 <input type="number" class="form-control" id="harga_buku" name="harga" value="50000" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="penulis">Penulis</label>
+              </div>
+              <div class="col-sm-11">
+                 <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Penulis" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="penerbit">Penerbit</label>
+              </div>
+              <div class="col-sm-11">
+                 <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="Penerbit" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-1">
+                <label for="tahun">Tahun Terbit</label>
+              </div>
+              <div class="col-sm-11">
+                 <input type="number" class="form-control" id="tahun" name="tahun" value="2019" required>
               </div>
             </div>
           </div>

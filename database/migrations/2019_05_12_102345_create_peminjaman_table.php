@@ -15,6 +15,7 @@ class CreatePeminjamanTable extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->usignedinteger('id_user',11);
             $table->string('nama_peminjam', 50);
             $table->string('id_buku', 3);
             $table->date('tanggal_pinjam');

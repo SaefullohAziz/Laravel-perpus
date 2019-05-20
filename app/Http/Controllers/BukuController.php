@@ -18,7 +18,10 @@ class BukuController extends Controller
     {
     	Buku::create([
             'nama_buku' => $req['buku'],
-            'harga_buku' => $req['harga']
+            'harga_buku' => $req['harga'],
+            'penulis' => $req['penulis'],
+            'penerbit' => $req['penerbit'],
+            'tahun' => $req['tahun']
     	]);
     	return redirect('/buku')->with('success', 'Buku baru ditambahkan');
     }
@@ -31,10 +34,14 @@ class BukuController extends Controller
 
     public function update(Request $req)
     {
+        // dd($req);
     	DB::table('buku')->where('id', $req->id)
                          ->update(
-                                ['nama_buku' => $req->nama_buku],
-                                ['harga_buku' => $req->harga_buku]
+                                    ['nama_buku' => $req->nama_buku,
+                                    'harga_buku' => $req->harga_buku,
+                                    'penulis' => $req->penulis,
+                                    'penerbit' => $req->penerbit,
+                                    'tahun' => $req->tahun]
                             );
     	return redirect('/buku')->with('success', 'Buku diedit');
     }

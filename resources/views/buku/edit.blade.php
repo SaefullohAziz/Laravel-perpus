@@ -20,6 +20,18 @@
                           <label>Harga buku</label>
                           <input type="text" name="harga_buku" class="form-control rounded-pill " value="{{ $Buku->harga_buku }}">
                         </div>
+                        <div class="form-group">
+                          <label>Penulis buku</label>
+                          <input type="text" name="penulis" class="form-control rounded-pill" value="{{ $Buku->penulis }}">
+                        </div>
+                        <div class="form-group">
+                          <label>Penerbit buku</label>
+                          <input type="text" name="penerbit" class="form-control rounded-pill" value="{{ $Buku->penerbit }}">
+                        </div>
+                        <div class="form-group">
+                          <label>Tahun Terbit</label>
+                          <input type="number" name="tahun" class="form-control rounded-pill" value="{{ $Buku->tahun }}">
+                        </div>
                         <div class="text-right">
         							  	<a href="/buku" class="btn btn-secondary col-2 rounded-pill">
         								    Kembali
