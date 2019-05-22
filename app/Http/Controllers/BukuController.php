@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use App\Buku;
+use App\Peminjaman;
 
 class BukuController extends Controller
 {
@@ -34,7 +35,6 @@ class BukuController extends Controller
 
     public function update(Request $req)
     {
-        // dd($req);
     	DB::table('buku')->where('id', $req->id)
                          ->update(
                                     ['nama_buku' => $req->nama_buku,
@@ -48,7 +48,11 @@ class BukuController extends Controller
 
     public function destroy($id)
     {
+        // $status = Peminjaman::where('id_buku', $id)->where('status', '!=', 'dikembalikan')->count();
+        // if ($status > 0) {
+        //     return redirect('/buku')->with('danger', 'Buku masih dalam peminjaman');
+        // }
     	Buku::destroy($id);
-    	return redirect('/buku')->with('success', 'Buku baru ditambahkan');
+    	return redirect('/buku')->with('success', 'Buku dihapus');
     }
 }

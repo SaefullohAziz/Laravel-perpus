@@ -15,6 +15,8 @@ class PeminjamanController extends Controller
                         ->join('buku', 'peminjaman.id_buku', '=' , 'buku.id')
                         ->orderBy('status', 'desc')
                         ->get()->all();
+
+        
         return view('admin.index', ['Peminjaman' => $Peminjaman]);
     }
 
