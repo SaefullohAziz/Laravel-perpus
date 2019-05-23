@@ -50,17 +50,7 @@
                       <div class="row justify-content-center m-0">
     						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm col-md-5 rounded-pill">Edit
     						      	</a>
-    					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger col-md-5 rounded-pill
-
-                          <?php 
-
-                            $status = DB::table('peminjaman')->where('id_buku',$buku->id)->count();
-                              if ($status > 0) :
-                            ?>
-                              disabled
-                            <?php endif; ?>
-
-                          ">Hapus</a>
+    					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger col-md-5 rounded-pill">Hapus</a>
                         
                       </div>
   						      </td>
@@ -74,6 +64,7 @@
     </div>
   </div>
 </div>
+
 
 
 
