@@ -45,14 +45,14 @@ class PeminjamanController extends Controller
                 DB::table('peminjaman')
                     ->where('id', $id)
                     ->update(['biaya' => $harga_buku*2]);
-                return redirect('/peminjaman')->with('success','Pemgembalian telat lebih dari atau sama dengan tiga hari, biaya denda ditambahkan!');
+                return redirect('/peminjaman')->with('success','Pengembalian telat lebih dari atau sama dengan satu, biaya denda double ditambahkan!');
             }
             else
             {
                 DB::table('peminjaman')
                     ->where('id', $id)
                     ->update(['biaya' => $harga_buku]);
-                return redirect('/peminjaman')->with('success','Pemgembalian telat  satu hari, biaya denda ditambahkan!');
+                return redirect('/peminjaman')->with('success','Pengembalian telat kurang dari satu minggu, biaya normal denda ditambahkan!');
             }
         }
         else
@@ -91,7 +91,6 @@ class PeminjamanController extends Controller
         $Peminjaman = Peminjaman::
                      join('buku', 'peminjaman.id_buku', '=' , 'buku.id')
                     ->orderBy('status', 'desc')
-                    // ->where('nama_peminjam', Auth::user()->name)
                     ->where('id_user', Auth::user()->id)
                     ->paginate(10);
         return view('riwayat', ['Peminjaman' => $Peminjaman]);

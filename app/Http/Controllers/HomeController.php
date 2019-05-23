@@ -33,15 +33,10 @@ class HomeController extends Controller
         $Buku = Buku::get();
 
         $peminjaman = Peminjaman::where('id_user', Auth::user()->id)
-                        ->where('status', 'Pinjam')
+                        ->where('status', '!=', 'dikembalikan')
                         ->count();
 
-
-        $perpanjang = Peminjaman::where('id_user', Auth::user()->id)
-                        ->where('status', 'Diperpanjang')
-                        ->count();
-
-        if (($peminjaman >= 1) OR ($perpanjang >= 1)) {
+        if ($peminjaman >= 1) {
             $peminjaman = Peminjaman::where('nama_peminjam', Auth::user()->name)->where('status', 'Pinjam')->orderBy('tanggal_kembali', 'asc')->orwhere('status', 'Diperpanjang')->get()->first();
             $tanggal_kembali = json_decode(json_encode($peminjaman), True)['tanggal_kembali'];
             $deadline = explode('-', $tanggal_kembali);
@@ -49,10 +44,15 @@ class HomeController extends Controller
             $sekarang = time();
 
 
-            $buku = Buku::where('id', json_decode(json_encode($peminjaman), True)['id'])->get()->first();
+            $buku = Buku::where('id', json_decode(json_encode($peminjaman), True)['id_buku'])->get()->first();
             $buku = json_decode(json_encode($buku), True)['nama_buku'];
 
-            if ($deadline <= ($sekarang+60*60*24*3)) {
+            if ($deadline <= $sekarang) {
+                session()->flash('danger', 'Masa pinjaman buku ' . 
+                    $buku
+                 . ' telah habis, segera kembalikan buku ke operator perpustakaan!');
+            }
+            elseif ($deadline <= ($sekarang+60*60*24*3)) {
                 session()->flash('info', 'Pengembalian buku ' . 
                     $buku
                  . ' kurang dari tiga hari! (' . $tanggal_kembali . ')');
