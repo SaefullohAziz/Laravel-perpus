@@ -37,7 +37,7 @@ class PeminjamanController extends Controller
 
         $tanggal_kembali = json_decode(json_encode($tanggal_kembali), True)[0]['tanggal_kembali'];
         $tanggal_kembali = explode('-', $tanggal_kembali);
-        $tanggal_kembali = mktime(0, 0, 0, $tanggal_kembali[1], $tanggal_kembali[2], $tanggal_kembali[0]);
+        $tanggal_kembali = mktime(0, 0, 16, $tanggal_kembali[1], $tanggal_kembali[2], $tanggal_kembali[0]);
         $sekarang = time();
 
         if ($sekarang > $tanggal_kembali ) {

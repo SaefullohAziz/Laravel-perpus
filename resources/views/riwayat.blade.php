@@ -31,6 +31,7 @@
                   </span>
               </ul>
               {{ $Peminjaman->links() }}
+              <a href="/home" class="btn btn-secondary rounded-pill">Kembali</a>
             </div>
           </div>
         </div>

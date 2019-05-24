@@ -23,7 +23,8 @@
       </div>
       <hr>
       <div class="row">
-        @foreach ($Buku as $b)
+        @if ($Buku != NULL)
+          @foreach ($Buku as $b)
           <div class="col-sm-6 my-2">
             <div class="card shadow" style="border-radius: 15px;">
               <div class="card-body">
@@ -40,6 +41,14 @@
             </div>
           </div>
         @endforeach
+        @else
+          <div class="col">
+            <div class="text-center alert alert-warning" role="alert">
+              Pencarian tidak ditemukan!
+            </div>
+          </div>
+        
+        @endif
       </div>
     </div>
 @endsection

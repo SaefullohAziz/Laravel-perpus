@@ -12,6 +12,9 @@ Route::get('/home/cari', 'HomeController@cari');
 Route::get('/peminjaman/form/{id}', 'HomeController@form');
 Route::get('/peminjaman/riwayat/{id}', 'PeminjamanController@riwayat');
 Route::get('/peminjaman/perpanjangan/{id}', 'PeminjamanController@perpanjangan');
+Route::get('/profile', 'HomeController@profile');
+Route::get('/profile/edit', 'HomeController@editprofile');
+Route::post('/profile/act', 'HomeController@editprofileact');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 	Route::resource('/users', 'UserController', ['except' => ['show', 'create','store']]); 
