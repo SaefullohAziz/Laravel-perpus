@@ -48,9 +48,9 @@
   						      <td>{{ $buku->tahun }}</td>
   						      <td>
                       <div class="row justify-content-center m-0">
-    						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm col-md-5 rounded-pill">Edit
+    						      	<a href="/buku/edit/{{ $buku->id }}" class="btn btn-primary btn-sm col-md-6 rounded-pill">Edit
     						      	</a>
-    					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger col-md-5 rounded-pill">Hapus</a>
+    					      		<a href="{{ route('hapusBuku', $buku->id) }}" class="btn btn-sm btn-danger col-md-6 rounded-pill">Hapus</a>
                         
                       </div>
   						      </td>

@@ -12,7 +12,7 @@
                             Profile
                         </div>
                         <div class="col text-right">
-                            <a href="/profile/edit" class="btn btn-dark rounded-pill col-4">Edit profile</a>
+                            <a href="/profile/edit" class="btn btn-dark rounded-pill col-4 disabled" >Edit profile</a>
                         </div>
                     </div>
                 </div>
@@ -26,8 +26,9 @@
                       </div>
                       <div class="form-group">
                         <label for="username">Nama User</label>
-                        <input type="text" class="form-control rounded-pill" id="username" value="{{ $User->name }}" readonly>
+                        <input type="text" class="form-control rounded-pill text-capitalize" id="username" value="{{ $User->name }}" readonly>
                       </div>
+                      <small class="text-danger">*Mohon maaf fungsi edit user sedang dimatikan</small>
                     </form>
                 </div>
             </div>
